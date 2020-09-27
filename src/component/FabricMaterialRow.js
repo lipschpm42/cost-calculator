@@ -119,8 +119,8 @@ function MaterialRow(props) {
         <MenuItem value={5}>5 X 5</MenuItem>
       </Select>
       <Input className={classes.inputBox} type='text' value={squareCount} onChange={squareCountChange} />
-      <span className={classes.display}>{squareCountMax}</span>
-        <span className={classes.display}>${total}</span>
+      {/* <span className={classes.display}>{squareCountMax}</span> */}
+      {/* <span className={classes.display}>${total}</span> */}
     </Box>
   );
 }
