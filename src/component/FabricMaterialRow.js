@@ -4,16 +4,12 @@ import { blue } from '@material-ui/core/colors'
 
 const useStyles = makeStyles((theme) => ({
   selectMenu: {
-    // marginRight: theme.spacing(3),
-    // marginLeft: theme.spacing(3),
     minWidth: 80,
     fontSize: '15px',
     backgroundColor: 'white',
     borderRadius: 3,
   },
   inputBox: {
-    // marginRight: theme.spacing(3),
-    // marginLeft: theme.spacing(3),
     width: 65,
     fontSize: '15px',
     backgroundColor: 'white',
@@ -21,16 +17,12 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(0)
   },
   checkBox: {
-    // marginRight: theme.spacing(3),
-    // marginLeft: theme.spacing(3),
     color: blue[400],
     '&$checked': {
       color: blue[600],
     },
   },
   display: {
-    // marginRight: theme.spacing(3),
-    // marginLeft: theme.spacing(3),
     width: 50,
     fontSize: '15px',
   },
@@ -108,32 +100,32 @@ function MaterialRow(props) {
         />
       </Grid>
       <Grid item className={classes.gridItem}>
-      <Input className={classes.inputBox} type='text' value={yards} onChange={yardsChange} />
+        <Input className={classes.inputBox} type='text' value={yards} onChange={yardsChange} />
       </Grid>
       <Grid item className={classes.gridItem}>
-      <Input className={classes.inputBox} type='text' value={width} onChange={widthChange} />
-      {/* <Input className={classes.inputBox} type='text'value={design}/>  */}
+        <Input className={classes.inputBox} type='text' value={width} onChange={widthChange} />
+        {/* <Input className={classes.inputBox} type='text'value={design}/>  */}
       </Grid>
       <Grid item className={classes.gridItem}>
-      <Checkbox className={classes.checkBox} checked={onFold} color='primary' onChange={() => setOnFold(!onFold)} />
+        <Checkbox className={classes.checkBox} checked={onFold} color='primary' onChange={() => setOnFold(!onFold)} />
       </Grid>
       <Grid item className={classes.gridItem}>
-      <Select
-        defaultValue={10}
-        value={squareSize}
-        onChange={squareSizeChange}
-        className={classes.selectMenu}
-      >
-        <MenuItem value={10}>10 X 10</MenuItem>
-        <MenuItem value={9}>9 X 9</MenuItem>
-        <MenuItem value={8}>8 X 8</MenuItem>
-        <MenuItem value={7}>7 X 7</MenuItem>
-        <MenuItem value={6}>6 X 6</MenuItem>
-        <MenuItem value={5}>5 X 5</MenuItem>
-      </Select>
+        <Select
+          defaultValue={10}
+          value={squareSize}
+          onChange={squareSizeChange}
+          className={classes.selectMenu}
+        >
+          <MenuItem value={10}>10 X 10</MenuItem>
+          <MenuItem value={9}>9 X 9</MenuItem>
+          <MenuItem value={8}>8 X 8</MenuItem>
+          <MenuItem value={7}>7 X 7</MenuItem>
+          <MenuItem value={6}>6 X 6</MenuItem>
+          <MenuItem value={5}>5 X 5</MenuItem>
+        </Select>
       </Grid>
       <Grid item className={classes.gridItem}>
-      <Input className={classes.inputBox} type='text' value={squareCount} onChange={squareCountChange} />
+        <Input className={classes.inputBox} type='text' value={squareCount} onChange={squareCountChange} />
       </Grid>
       {/* <span className={classes.display}>{squareCountMax}</span> */}
       {/* <span className={classes.display}>${total}</span> */}

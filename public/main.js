@@ -3,7 +3,7 @@
 // const app = electron.app;
 // const BrowserWindow = electron.BrowserWindow;
 
-const {app, BrowserWindow, Menu} = require('electron')
+const {app, BrowserWindow, Menu, nativeImage} = require('electron')
 
 
 const path = require('path');
@@ -13,8 +13,8 @@ const isDev = require('electron-is-dev');
 let mainWindow;
 
 function createWindow() {
-  mainWindow = new BrowserWindow({width: 900, height: 600});
-  // icon: path.join(__dirname,  '/favico.ico')
+  mainWindow = new BrowserWindow({width: 900, height: 600,});
+  // mainWindow = new BrowserWindow({width: 900, height: 600, icon: nativeImage.createFromPath(path.join(__dirname, 'icon.ico'))});
   mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
   Menu.setApplicationMenu(null); 
   mainWindow.on('closed', () => mainWindow = null);

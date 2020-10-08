@@ -10,13 +10,12 @@ import { blue } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
   inputBox: {
-    marginLeft: theme.spacing(7),
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
     width: 65,
     fontSize: '15px',
     backgroundColor: 'white',
     borderRadius: 3,
+    justifySelf: 'center',
+    justifyContent: 'center'
   },
   display: {
     margin: theme.spacing(1),
@@ -27,12 +26,12 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     margin: theme.spacing(0),
     fontSize: '9px + 2vmin',
-    color: 'white'
+    color: 'white',
   },
   materialGrid: {
     marginTop: theme.spacing(1),
     marginRight: theme.spacing(2),
-    marginLeft: theme.spacing(2)
+    marginLeft: theme.spacing(2),
   },
   button: {
     color: theme.palette.getContrastText(blue[500]),
@@ -43,7 +42,6 @@ const useStyles = makeStyles((theme) => ({
     variant: 'contained'
   },
   totals: {
-    alignItems: 'center',
     justifyContent: 'center',
     fontSize: '9px + 2vmin',
   },
@@ -66,7 +64,7 @@ function App() {
 
   const classes = useStyles();
 
-  const handleChange = (e) => {
+  const handleFabricChange = (e) => {
     if (e.target.value > fabNum.length) {
       setFabNum(fabNum.concat(parseInt(e.target.value, 10)))
       setFabricArray(fabricArray.concat({ materialNum: parseInt(e.target.value, 10), materialCost: 4.19 }))
@@ -82,12 +80,12 @@ function App() {
     console.log(fabricArray)
   }
 
-  const handleChange2 = (e) => {
+  const handleVinylChange = (e) => {
     if (e.target.value > vinyNum.length) {
       setVinyNum(vinyNum.concat(parseInt(e.target.value, 10)))
       setVinylArray(vinylArray.concat({ materialNum: parseInt(e.target.value, 10), materialCost: 4.19 }))
     }
-    else if (e.target.value < vinyNum.length && e.target.value >= 1) {
+    else if (e.target.value < vinyNum.length && e.target.value >= 0) {
       let array = [...vinyNum]
       array.splice(-1, 1)
       setVinyNum(array)
@@ -128,12 +126,12 @@ function App() {
       <div align='center' style={{ fontSize: '20px', fontWeight: 'bold', color: 'white' }}>Quilt Calculator</div>
       <Grid container className='App-header'>
         <Grid item className={classes.materialGrid}>
-          <Typography className={classes.materialNum}> Number of Fabrics </Typography>
-          <Input type='number' className={classes.inputBox} value={fabNum.length} onChange={handleChange} />
+          <Typography className={classes.materialNum}> Fabric #'s </Typography>
+          <Input type='number' className={classes.inputBox} value={fabNum.length} onChange={handleFabricChange} />
         </Grid>
         <Grid item className={classes.materialGrid}>
-          <Typography className={classes.materialNum}> Number of Vinyl Colors</Typography>
-          <Input type='number' className={classes.inputBox} value={vinyNum.length} onChange={handleChange2} />
+          <Typography className={classes.materialNum}> Vinyl #'s</Typography>
+          <Input type='number' className={classes.inputBox} value={vinyNum.length} onChange={handleVinylChange} />
         </Grid>
       </Grid>
       <Grid container className='App-body'>
@@ -143,12 +141,16 @@ function App() {
         <Grid item>
           {fabNum.map((row) => <FabricMaterialRow materialNum={row} materialCost={fabricMaterialCost} />)}
         </Grid>
-        <Grid item>
-          <VinylHeaders />
-        </Grid>
-        <Grid item>
-          {vinyNum.map((row) => <VinylMaterialRow materialNum={row} materialCost={vinylMaterialCost} />)}
-        </Grid>
+        {vinyNum.length >= 1 ?
+          <div>
+            <Grid item>
+              <VinylHeaders />
+            </Grid>
+            <Grid item>
+              {vinyNum.map((row) => <VinylMaterialRow materialNum={row} materialCost={vinylMaterialCost} />)}
+            </Grid>
+          </div>
+          : <></>}
         <Grid item>
           <LaborRow laborCost={updateLaborCost} />
         </Grid>
