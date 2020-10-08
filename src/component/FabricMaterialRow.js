@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { MenuItem, Select, makeStyles, Input, InputAdornment, Checkbox, Box } from '@material-ui/core'
+import { MenuItem, Select, makeStyles, Input, InputAdornment, Checkbox, Grid } from '@material-ui/core'
 import { blue } from '@material-ui/core/colors'
 
 const useStyles = makeStyles((theme) => ({
   selectMenu: {
-    marginRight: theme.spacing(3),
-    marginLeft: theme.spacing(3),
+    // marginRight: theme.spacing(3),
+    // marginLeft: theme.spacing(3),
     minWidth: 80,
     fontSize: '15px',
     backgroundColor: 'white',
     borderRadius: 3,
   },
   inputBox: {
-    marginRight: theme.spacing(3),
-    marginLeft: theme.spacing(3),
+    // marginRight: theme.spacing(3),
+    // marginLeft: theme.spacing(3),
     width: 65,
     fontSize: '15px',
     backgroundColor: 'white',
@@ -21,18 +21,22 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(0)
   },
   checkBox: {
-    marginRight: theme.spacing(3),
-    marginLeft: theme.spacing(3),
+    // marginRight: theme.spacing(3),
+    // marginLeft: theme.spacing(3),
     color: blue[400],
     '&$checked': {
       color: blue[600],
     },
   },
   display: {
-    marginRight: theme.spacing(3),
-    marginLeft: theme.spacing(3),
+    // marginRight: theme.spacing(3),
+    // marginLeft: theme.spacing(3),
     width: 50,
     fontSize: '15px',
+  },
+  gridItem: {
+    marginRight: theme.spacing(1),
+    marginLeft: theme.spacing(1),
   },
 }));
 
@@ -94,17 +98,26 @@ function MaterialRow(props) {
   }
 
   return (
-    <Box>
-      <Input
-        className={classes.inputBox}
-        value={cost}
-        onChange={costChange}
-        startAdornment={<InputAdornment position="start">$</InputAdornment>}
-      />
+    <Grid container>
+      <Grid item className={classes.gridItem}>
+        <Input
+          className={classes.inputBox}
+          value={cost}
+          onChange={costChange}
+          startAdornment={<InputAdornment position="start">$</InputAdornment>}
+        />
+      </Grid>
+      <Grid item className={classes.gridItem}>
       <Input className={classes.inputBox} type='text' value={yards} onChange={yardsChange} />
+      </Grid>
+      <Grid item className={classes.gridItem}>
       <Input className={classes.inputBox} type='text' value={width} onChange={widthChange} />
       {/* <Input className={classes.inputBox} type='text'value={design}/>  */}
+      </Grid>
+      <Grid item className={classes.gridItem}>
       <Checkbox className={classes.checkBox} checked={onFold} color='primary' onChange={() => setOnFold(!onFold)} />
+      </Grid>
+      <Grid item className={classes.gridItem}>
       <Select
         defaultValue={10}
         value={squareSize}
@@ -118,10 +131,13 @@ function MaterialRow(props) {
         <MenuItem value={6}>6 X 6</MenuItem>
         <MenuItem value={5}>5 X 5</MenuItem>
       </Select>
+      </Grid>
+      <Grid item className={classes.gridItem}>
       <Input className={classes.inputBox} type='text' value={squareCount} onChange={squareCountChange} />
+      </Grid>
       {/* <span className={classes.display}>{squareCountMax}</span> */}
       {/* <span className={classes.display}>${total}</span> */}
-    </Box>
+    </Grid>
   );
 }
 

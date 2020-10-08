@@ -1,38 +1,27 @@
 
 import React, { useState, useEffect } from 'react';
-import { MenuItem, Select, makeStyles, OutlinedInput, Input, InputAdornment, Checkbox } from '@material-ui/core'
+import { makeStyles, Input, Grid, Typography } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
-  selectMenu: {
-    margin: theme.spacing(1),
-    minWidth: 80,
-    fontSize: '15px',
-    backgroundColor: 'white',
-    borderRadius: 3,
-  },
   inputBox: {
-    margin: theme.spacing(1),
     width: 65,
     fontSize: '15px',
     backgroundColor: 'white',
     borderRadius: 3,
   },
-  checkBox: {
-    margin: theme.spacing(0),
-    color: 'white'
-  },
-  display: {
-    margin: theme.spacing(1),
-    width: 50,
-    fontSize: '15px',
-  },
+  gridItem: {
+    marginRight: theme.spacing(1),
+    marginLeft: theme.spacing(1),
+    justify: 'center',
+    width: 65,
+  }
 }));
 
 function LaborRow(props) {
   const [wages, setWages] = useState(17.5)
   const [hours, setHours] = useState(10)
   const [totalLabor, setTotalLabor] = useState()
-  
+
   const classes = useStyles();
 
   useEffect(() => {
@@ -54,17 +43,29 @@ function LaborRow(props) {
   }
 
   return (
-    <div className="InputRow" >
-      <div>
-        <span style={{ margin: 10, width: '50px' }}>Wages</span>
-        <span style={{ margin: 10, width: '50px' }}>Hours</span>
-        <span style={{ margin: 10, width: '50px' }}>Total</span>
-      </div>
-      <div>
-        <Input className={classes.inputBox} type='text' value={wages} onChange={wagesChange} />
-        <Input className={classes.inputBox} type='text' value={hours} onChange={hoursChange} />
-        <span style={{ margin: 10, width: '50px' }}>${totalLabor}</span>
-      </div>
+    <div >
+      <Grid container>
+        <Grid item className={classes.gridItem}>
+          <Typography>Wages</Typography>
+        </Grid>
+        <Grid item className={classes.gridItem}>
+          <Typography>Hours</Typography>
+        </Grid>
+        {/* <Grid>
+          <span style={{ margin: 10, width: '50px' }}>Total</span>
+        </Grid> */}
+      </Grid>
+      <Grid container>
+        <Grid item className={classes.gridItem}>
+          <Input className={classes.inputBox} type='text' value={wages} onChange={wagesChange} />
+        </Grid>
+        <Grid item className={classes.gridItem}>
+          <Input className={classes.inputBox} type='text' value={hours} onChange={hoursChange} />
+        </Grid>
+        {/* <Grid item className={classes.gridItem}>
+          <span style={{ margin: 10, width: '50px' }}>${totalLabor}</span>
+        </Grid> */}
+      </Grid>
     </div>
   );
 }

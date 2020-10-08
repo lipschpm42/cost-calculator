@@ -1,19 +1,17 @@
 import React from 'react';
-import { Box, makeStyles, Typography } from '@material-ui/core'
+import { Grid, makeStyles, Typography } from '@material-ui/core'
 
 
 const useStyles = makeStyles((theme) => ({
-  box: {
-    paddingLeft: theme.spacing(3)
-  },
-  spacing: {
-    marginRight: theme.spacing(2),
-    marginLeft: theme.spacing(2),
-    width: 75,
-    display: 'inline'
+  gridSpacing: {
+    marginRight: theme.spacing(1),
+    marginLeft: theme.spacing(1),
+    justify: 'center',
+    width: 65,
   },
 }
 ))
+
 function TitleRow() {
   const headers =
     [
@@ -25,9 +23,9 @@ function TitleRow() {
 
 
   return (
-    <Box component='span' className={classes.box} >
-      {headers.map((header) => <Typography className={classes.spacing}>{header}</Typography>)}
-    </Box>
+    <Grid container component='span' >
+      {headers.map((header) => <Grid item className={classes.gridSpacing}><Typography>{header}</Typography></Grid>)}
+    </Grid>
   );
 }
 

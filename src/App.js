@@ -26,11 +26,13 @@ const useStyles = makeStyles((theme) => ({
   materialNum: {
     display: 'flex',
     margin: theme.spacing(0),
-    fontSize: '20px',
+    fontSize: '9px + 2vmin',
     color: 'white'
   },
   materialGrid: {
-    margin: theme.spacing(2)
+    marginTop: theme.spacing(1),
+    marginRight: theme.spacing(2),
+    marginLeft: theme.spacing(2)
   },
   button: {
     color: theme.palette.getContrastText(blue[500]),
@@ -38,7 +40,18 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       backgroundColor: blue[700],
     },
-    variant: "contained"
+    variant: 'contained'
+  },
+  totals: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: '9px + 2vmin',
+  },
+  totalItems: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: '9px + 2vmin',
+    margin: theme.spacing(1)
   }
 }));
 
@@ -111,8 +124,9 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <Grid container>
+    <div className='App'>
+      <div align='center' style={{ fontSize: '20px', fontWeight: 'bold', color: 'white' }}>Quilt Calculator</div>
+      <Grid container className='App-header'>
         <Grid item className={classes.materialGrid}>
           <Typography className={classes.materialNum}> Number of Fabrics </Typography>
           <Input type='number' className={classes.inputBox} value={fabNum.length} onChange={handleChange} />
@@ -122,18 +136,41 @@ function App() {
           <Input type='number' className={classes.inputBox} value={vinyNum.length} onChange={handleChange2} />
         </Grid>
       </Grid>
-      <header className="App-header">
-        <FabricHeaders />
-        {fabNum.map((row) => <FabricMaterialRow materialNum={row} materialCost={fabricMaterialCost} />)}
-        <VinylHeaders />
-        {vinyNum.map((row) => <VinylMaterialRow materialNum={row} materialCost={vinylMaterialCost} />)}
-        <LaborRow laborCost={updateLaborCost} />
-        <Button onClick={calculateTotal} className={classes.button} disableElevation >calcuate</Button>
-        <div>
-          <p>Material Cost: ${totalCost}</p>
-          <p>Final Price: ${finalPrice}</p>
-        </div>
-      </header>
+      <Grid container className='App-body'>
+        <Grid item>
+          <FabricHeaders />
+        </Grid>
+        <Grid item>
+          {fabNum.map((row) => <FabricMaterialRow materialNum={row} materialCost={fabricMaterialCost} />)}
+        </Grid>
+        <Grid item>
+          <VinylHeaders />
+        </Grid>
+        <Grid item>
+          {vinyNum.map((row) => <VinylMaterialRow materialNum={row} materialCost={vinylMaterialCost} />)}
+        </Grid>
+        <Grid item>
+          <LaborRow laborCost={updateLaborCost} />
+        </Grid>
+        <Grid item className={classes.materialGrid}>
+          <Button onClick={calculateTotal} className={classes.button} disableElevation >calcuate</Button>
+        </Grid>
+        <Grid container className={classes.totals}>
+          <Grid item className={classes.totalItems}>
+            <p style={{ margin: 0 }}>Material Cost</p>
+            <div>
+              {totalCost ? <p>${totalCost}</p> : <></>}
+            </div>
+          </Grid>
+          {/* <Grid item className={classes.totalItems}><p>|</p> </Grid> */}
+          <Grid item className={classes.totalItems}>
+            <p style={{ margin: 0 }}>Final Price</p>
+            <div>
+              {totalCost ? <p>${finalPrice}</p> : <></>}
+            </div>
+          </Grid>
+        </Grid>
+      </Grid>
     </div >
   );
 }
